@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linkshare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap -->
+    <link href="master.css" rel="stylesheet" media="screen">
+
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/mustache.js"></script> -->
+    <!-- <script src="js/jquery.mustache.js"></script> -->
+    <script src="js/ICanHaz.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+
+    <script id="link" type="text/html">
+      <div id="{{id}}" class="link">
+	<input type="checkbox" name="{{id}}"/>
+	<span id="{{id}}-title" class="link-title">
+	  <a href="{{url}}">{{title}}</a>
+	</span>
+      </div><!-- {{id}} -->
+    </script>
+    
+    <div class="container">
+      <div class="row">
+	<div class="col-lg-2 col-sm-2 col-xs-0"></div>
+	<div id="links" class="col-lg-8 col-sm-8 col-xs-12">
+	  <form action="" id="links-form">
+	  </form>
+	</div>
+	<div class="col-lg-2 col-sm-2 col-xs-0"></div>
+      </div>
+    </div><!-- container -->
+  </body>
+</html>
