@@ -10,26 +10,56 @@
 
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/mustache.js"></script> -->
-    <!-- <script src="js/jquery.mustache.js"></script> -->
-    <script src="js/ICanHaz.js"></script>
+    <script src="js/mustache.js"></script>
+    <script src="js/ICanHaz-no-mustache.js"></script>
+    <script src="js/notify.min.js"></script>
     <script src="js/script.js"></script>
   </head>
   <body>
 
+    <!-- link template for mustache.js -->
     <script id="link" type="text/html">
       <div id="{{id}}" class="link">
-	<input type="checkbox" name="{{id}}"/>
-	<span id="{{id}}-title" class="link-title">
-	  <a href="{{url}}" target="_blank">{{title}}</a>
-	</span>
-      </div><!-- {{id}} -->
+	<div class="input-group">
+	  <span class="input-group-addon">
+	    <input type="checkbox" name="{{id}}">
+	  </span>
+	  <span id="{{id}}-title" class="link-title input-group-addon">
+	    <a href="{{url}}" target="_blank">{{title}}</a>
+	  </span>
+	  </label>
+	</div><!-- {{id}} -->
+      </div><!-- input-group -->
     </script>
     
     <div class="container">
       <div class="row">
 	<div class="col-lg-2 col-sm-2 col-xs-0"></div>
+	<form id="link-submit-form">
+	<div class="col-lg-4 col-sm-4 col-xs-6" id="title-col">
+	  <div class="input-group">
+	    <span class="input-group-addon">title</span>
+	    <input id="title" type="text" class="form-control">
+	  </div><!-- input-group -->
+	</div>
+	<div class="col-lg-4 col-sm-4 col-xs-6" id="url-col">
+	  <div class="input-group">
+	    <span class="input-group-addon">url</span>
+	    <input id="url" type="text" class="form-control">
+	    <span class="input-group-btn">
+	      <button type="button" class="btn btn-primary" id="lsubmit">
+		submit
+	      </button>
+	    </span><!-- input-group-btn -->
+	  </div><!-- input-group -->
+	</div>
+	</form>
+	<div class="col-lg-2 col-sm-2 col-xs-0"></div>	
+      </div>
+      <div class="row">
+	<div class="col-lg-2 col-sm-2 col-xs-0"></div>
 	<div id="links" class="col-lg-8 col-sm-8 col-xs-12">
+	  </form>
 	  <form action="" id="links-form">
 	  </form>
 	</div>

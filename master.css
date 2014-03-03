@@ -1,1 +1,17 @@
 @import url(css/bootstrap.css);
+
+form {
+    overflow-vertical: scroll;
+}
+
+#title-col {
+    padding-right: 2px;
+}
+
+#url-col {
+    padding-left: 2px;
+}
+
+.link-title {
+    width: 90%;
+}
