@@ -1,5 +1,6 @@
 //var base="http://ec2-54-201-178-20.us-west-2.compute.amazonaws.com:8080/"
-var base="http://localhost:3000/"
+//var base="http://localhost:3000/"
+var base="http://localhost:8080/linkshare/"
 
 $(document).ready(function() {
     $("#lsubmit").click(function(){
@@ -15,7 +16,7 @@ $(document).ready(function() {
 		success: function () {
 		    create_latest_link();
 		},
-		error: xhr_error
+		error: xhr_error(base+"link")
 	    });
 	    $.notify("interned link", "success");
 	};
@@ -33,7 +34,7 @@ $(document).ready(function() {
 		    success: function(t){
 			subrequest(t, url);
 		    },
-		    error: xhr_error
+		    error: xhr_error(base+"lookup")
 		});
 		$.notify("checking title", "info");
 	    } else {
@@ -54,7 +55,7 @@ $(document).ready(function() {
 		create_link(item);
 	    });
 	},
-	error: xhr_error
+	error: xhr_error(base+"links")
     });
     $.notify("fetching links", "info");
 });
@@ -68,7 +69,7 @@ function create_latest_link(){
 	success: function (data) {
 	    create_link(data);
 	},
-	error: xhr_error
+	error: xhr_error(base+"link")
     });
 }
 
@@ -80,8 +81,10 @@ function reset_form(t){
     t.closest('form').find("input[type=text], textarea").val("");
 }
 
-function xhr_error(xhr, status, err) {
-    $.notify(err);
-    console.log(xhr, status, err);
+function xhr_error(url){
+    return function(xhr, status, err) {
+	$.notify(err);
+	console.log(url, xhr, status, err);
+    }
 }
 
