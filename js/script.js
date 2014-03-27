@@ -1,8 +1,41 @@
-//var base="http://ec2-54-201-178-20.us-west-2.compute.amazonaws.com:8080/"
+var base="http://54.201.155.234/linkshare/"
 //var base="http://localhost:3000/"
-var base="http://localhost:8080/linkshare/"
+//var base="http://localhost:8080/linkshare/"
+
+delete_shown = false;
 
 $(document).ready(function() {
+    $('#delete').hide();
+    
+    $('#delete').click(function(){
+	var idvals = $.map($('#links-form').find('input:checked'),
+			   function(item,i){
+			       return parseInt(item.name);
+			   });
+	body = {}
+	body.delete = true;
+	body.ids = idvals;
+	
+	$.ajax({
+	    type: "POST",
+	    contentType: "application/json",
+	    dataType: "text",
+	    url: base+"links",
+	    data: JSON.stringify(body),
+	    success: function(){
+		console.log("deleted");
+		$.each(idvals, function(i,item){
+		    id='#'+item.toString();
+		    $(id).slideUp(600);
+		});
+		$('#delete').fadeOut(600);		
+	    },
+	    error: xhr_error(base+'links')
+	});
+	$.notify("deleted link(s)", "info");
+    });
+    
+    
     $("#lsubmit").click(function(){
 	var title = $("input#title").val();
 	var url = $("input#url").val();
@@ -52,7 +85,7 @@ $(document).ready(function() {
 	crossDomain: true,
 	success: function (data) {
 	    $.each( data.links, function(i, item){
-		create_link(item);
+		create_link(item, false);
 	    });
 	},
 	error: xhr_error(base+"links")
@@ -67,14 +100,32 @@ function create_latest_link(){
 	data: "",
 	crossDomain: true,
 	success: function (data) {
-	    create_link(data);
+	    create_link(data, true);
 	},
 	error: xhr_error(base+"link")
     });
 }
 
-function create_link(link){
-    $(ich.link(link, true)).hide().appendTo('#links-form').fadeIn(600);
+function create_link(link, add){
+    if( add ){
+	$(ich.link(link, true)).hide().prependTo('#links-form').fadeIn(600);
+    } else {
+	$(ich.link(link, true)).hide().appendTo('#links-form').fadeIn(600);	
+    }
+    
+    $("[name='"+link.id+"']").change(function(){
+	if($("[name='"+link.id+"']").prop('checked')){
+	    if(!(delete_shown)){
+		delete_shown = true;
+		$('#delete').fadeIn(600);
+	    }
+	} else {
+	    if($('#links-form').find('input:checked').length === 0){
+		delete_shown = false;
+		$('#delete').fadeOut(600);
+	    }
+	}
+    });
 }
 
 function reset_form(t){

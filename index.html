@@ -9,6 +9,7 @@
     <link href="master.css" rel="stylesheet" media="screen">
 
     <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/jquery.custom-animations.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/mustache.js"></script>
     <script src="js/ICanHaz-no-mustache.js"></script>
@@ -36,23 +37,28 @@
       <div class="row">
 	<div class="col-lg-2 col-sm-2 col-xs-0"></div>
 	<form id="link-submit-form">
-	<div class="col-lg-4 col-sm-4 col-xs-6" id="title-col">
-	  <div class="input-group">
-	    <span class="input-group-addon">title</span>
-	    <input id="title" type="text" class="form-control">
-	  </div><!-- input-group -->
-	</div>
-	<div class="col-lg-4 col-sm-4 col-xs-6" id="url-col">
-	  <div class="input-group">
-	    <span class="input-group-addon">url</span>
-	    <input id="url" type="text" class="form-control">
-	    <span class="input-group-btn">
-	      <button type="button" class="btn btn-primary" id="lsubmit">
-		submit
-	      </button>
-	    </span><!-- input-group-btn -->
-	  </div><!-- input-group -->
-	</div>
+	  <div id="link-form">
+	    <div class="col-lg-4 col-sm-4 col-xs-6" id="title-col">
+	      <div class="input-group">
+		<span class="input-group-addon">title</span>
+		<input id="title" type="text" class="form-control">
+	      </div><!-- input-group -->
+	    </div>
+	    <div class="col-lg-4 col-sm-4 col-xs-6" id="url-col">
+	      <div class="input-group">
+		<span class="input-group-addon">url</span>
+		<input id="url" type="text" class="form-control">
+		<span class="input-group-btn">
+		  <button type="button" class="btn btn-primary" id="lsubmit">
+		    submit
+		  </button>
+		  <button id="delete" type="button" class="btn btn-danger" id="ldelete">
+		    delete
+		  </button>
+		</span><!-- input-group-btn -->
+	      </div><!-- input-group -->
+	    </div>
+	  </div>
 	</form>
 	<div class="col-lg-2 col-sm-2 col-xs-0"></div>	
       </div>
